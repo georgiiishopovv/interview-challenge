@@ -1,4 +1,4 @@
-# Rolos challenge
+# Interview challenge
 
 This is the simple SPA application repo that lists some posts.\
 Posts are loaded from https://dummyjson.com
