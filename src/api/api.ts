@@ -15,13 +15,34 @@ export interface PostsResponse {
 }
 
 export async function getPosts(limit : number, skip : number): Promise<PostsResponse> {
-    const response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${skip}`);
+    try{
+      const response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${skip}`);
 
-    return response.json();
+      if(!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      return response.json();
+    }
+    catch(error) {
+      console.error(error);
+      throw new Error("Could not fetch posts!");
+    }
+
 }
 
 export async function getPost(postId: Post['id']): Promise<Post> {
-  const response = await fetch(`https://dummyjson.com/posts/${postId}`);
+  try{
+    const response = await fetch(`https://dummyjson.com/posts/${postId}`);
 
-  return response.json();
+    if(!response.ok){
+      throw new Error(`Post ID = ${postId} - Error = ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+  catch(error){
+    console.error(error);
+    throw new Error(`Could not fetch post with ID ${postId}`);
+  }
 }
