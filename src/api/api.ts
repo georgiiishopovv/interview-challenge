@@ -14,10 +14,10 @@ export interface PostsResponse {
   total: number;
 }
 
-export async function getPosts(): Promise<PostsResponse> {
-  const response = await fetch('https://dummyjson.com/posts');
+export async function getPosts(limit : number, skip : number): Promise<PostsResponse> {
+    const response = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${skip}`);
 
-  return response.json();
+    return response.json();
 }
 
 export async function getPost(postId: Post['id']): Promise<Post> {
