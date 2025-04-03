@@ -61,28 +61,31 @@
 
 <style scoped>
 
-.pagination {
-    display: flex;
-    justify-content: center;
-    gap: 0.4rem;
-    margin-top: 2rem;
-  }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 0.4rem;
+        margin-top: 2rem;
+        }
 
-  .pagination .num-btn{
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-size: 1rem;
-  }
+    .pagination button{
+        cursor: pointer;
+    }
 
-  .pagination button.active {
-    color: red;
-  }
+    .pagination .num-btn{
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        font-size: 1rem;
+        }
 
-  .pagination button.non-clickable{
-    cursor: default;
-    pointer-events: none;
-  }
+    .pagination button.active {
+        color: red;
+        }
+
+    .pagination button.non-clickable{
+        cursor: default;
+        pointer-events: none;
+        }
 
 </style>
