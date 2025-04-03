@@ -18,10 +18,7 @@
     //Notify a page change to refresh the posts
     function change(page: number)
     {
-        if(page >= 1 && page <= props.totalPages)
-        {
-            emit('page-changed', page);
-        }
+        if(page >= 1 && page <= props.totalPages) emit('page-changed', page);
     }
 
     //Generate neighbors for each current page
@@ -38,9 +35,7 @@
         if(props.currentPage == 6) start-=1 
         if(props.currentPage == props.totalPages - 5) end+=1;
         
-        for(let i = start; i <= end; i++){
-            pages.push(i);
-        }
+        for(let i = start; i <= end; i++) pages.push(i);
 
         if(props.currentPage <= props.totalPages - 6) pages.push('...');
         pages.push(props.totalPages - 1);
