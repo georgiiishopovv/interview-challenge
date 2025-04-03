@@ -24,18 +24,25 @@
         }
     }
 
-    //Generate +2/-2 neighbors for each current page
+    //Generate neighbors for each current page
     function generatePages(){
         let pages : (number | string)[] = [];
 
         pages.push(1);
         if(props.totalPages > 2) pages.push(2);
-        if(props.currentPage > 5) pages.push('...')
-        for(let i = Math.max(3, props.currentPage - 2); i <= Math.min(props.currentPage + 2, props.totalPages-2); i++)
-        {
+        if(props.currentPage > 6) pages.push('...')
+
+        let start = Math.max(3, props.currentPage - 2);
+        let end = Math.min(props.currentPage + 2, props.totalPages-2);
+
+        if(props.currentPage == 6) start-=1 
+        if(props.currentPage == props.totalPages - 5) end+=1;
+        
+        for(let i = start; i <= end; i++){
             pages.push(i);
         }
-        if(props.currentPage <= props.totalPages - 5) pages.push('...');
+
+        if(props.currentPage <= props.totalPages - 6) pages.push('...');
         pages.push(props.totalPages - 1);
         pages.push(props.totalPages);
         return pages;
@@ -49,7 +56,7 @@
         <button @click="change(props.currentPage-1)">Prev</button>
         <button class="num-btn" v-for="page in generatePages()" :key="page"
             @click = "change(page)" 
-            :class="{active: page === props.currentPage}"
+            :class="{'active': page === props.currentPage, 'non-clickable': page === '...'}"
         >
             {{page}}
         </button>
@@ -78,8 +85,9 @@
     color: red;
   }
 
-  .pagination button:disabled {
-    cursor: not-allowed;
+  .pagination button.non-clickable{
+    cursor: default;
+    pointer-events: none;
   }
 
 </style>
